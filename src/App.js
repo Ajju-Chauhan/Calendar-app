@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
+import Calendar from "./components/Calendar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+const App = () => {
+  const [currentMonth, setCurrentMonth] = useState(dayjs());
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetch("/events.json")
+      .then((res) => res.json())
+      .then((data) => setEvents(data))
+      .catch((err) => console.error("Failed to load events", err));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-vh-100 bg-light p-4">
+      <div className="container">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <button
+            className="btn btn-primary"
+            onClick={() => setCurrentMonth(currentMonth.subtract(1, "month"))}
+          >
+            Previous
+          </button>
+          <h2 className="h4 fw-bold">
+            {currentMonth.format("MMMM YYYY")}
+          </h2>
+          <button
+            className="btn btn-primary"
+            onClick={() => setCurrentMonth(currentMonth.add(1, "month"))}
+          >
+            Next
+          </button>
+        </div>
+        <Calendar currentMonth={currentMonth} events={events} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
