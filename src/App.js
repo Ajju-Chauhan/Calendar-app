@@ -81,7 +81,7 @@ function App() {
       </div>
       
       {/* Sidebar should be hidden on mobile and only visible on larger screens */}
-      <div className="hidden sm:block sm:w-1/4">
+      <div className="sm:block sm:w-1/4">
         <Sidebar events={events} />
       </div>
 

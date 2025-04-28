@@ -1,0 +1,20 @@
+/* Hamburger menu styles (mobile) */
+button {
+    background-color: #3182ce; /* Tailwind Blue */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10; /* To ensure it stays on top */
+  }
+  
+  button:hover {
+    background-color: #2b6cb0; /* Darker shade */
+  }
+  
+  @media (min-width: 640px) {
+    button {
+      display: none; /* Hide hamburger on larger screens */
+    }
+  }
+  
