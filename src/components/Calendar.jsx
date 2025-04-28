@@ -33,20 +33,20 @@ export default function Calendar({ month, year, events, onAddEvent, onEditEvent 
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <div className="p-4">
+    <div className="p-2 sm:p-4">
       {/* Days header */}
-      <div className="grid grid-cols-7 gap-2 text-center font-semibold mb-2">
+      <div className="grid grid-cols-7 gap-1 sm:gap-2 text-center font-semibold mb-2 text-[10px] sm:text-sm">
         {daysOfWeek.map((day, idx) => (
           <div key={idx} className="text-gray-600">{day}</div>
         ))}
       </div>
 
       {/* Dates */}
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-1 sm:gap-2">
         {calendarDays.map((date, idx) => (
           <div
             key={idx}
-            className="border h-24 p-1 flex flex-col cursor-pointer rounded hover:bg-blue-50"
+            className="border h-16 sm:h-24 p-1 flex flex-col cursor-pointer rounded hover:bg-blue-50 text-[10px] sm:text-sm"
             onClick={() => date && onAddEvent(date)}
           >
             {date && (
@@ -54,11 +54,11 @@ export default function Calendar({ month, year, events, onAddEvent, onEditEvent 
                 <div className={`text-right ${isToday(date) ? 'text-blue-600 font-bold' : ''}`}>
                   {date.getDate()}
                 </div>
-                <div className="text-xs overflow-auto">
+                <div className="text-[9px] sm:text-xs overflow-auto mt-1 max-h-10 sm:max-h-16">
                   {getEventsForDate(date).map(ev => (
                     <div
                       key={ev.id}
-                      className="bg-blue-100 p-1 mt-1 rounded"
+                      className="bg-blue-100 p-1 mt-1 rounded truncate"
                       onClick={(e) => {
                         e.stopPropagation();
                         onEditEvent(ev);

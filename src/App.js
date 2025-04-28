@@ -5,7 +5,6 @@ import Sidebar from './components/Sidebar';
 import EventModal from './components/EventModal';
 import React from 'react';
 
-
 import "./index.css"
 
 function App() {
@@ -64,8 +63,8 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="flex-1">
+    <div className="flex flex-col sm:flex-row h-screen">
+      <div className="sm:flex-1">
         <Header 
           month={currentMonth} 
           year={currentYear} 
@@ -80,7 +79,12 @@ function App() {
           onEditEvent={handleEditEvent} 
         />
       </div>
-      <Sidebar events={events} />
+      
+      {/* Sidebar should be hidden on mobile and only visible on larger screens */}
+      <div className="hidden sm:block sm:w-1/4">
+        <Sidebar events={events} />
+      </div>
+
       {showModal && 
         <EventModal 
           date={selectedDate} 
