@@ -16,4 +16,4 @@ A responsive calendar app built with React, allowing users to view, add, and edi
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/your-username/calendar-app.git
+   (https://github.com/Ajju-Chauhan/Calendar-app)
